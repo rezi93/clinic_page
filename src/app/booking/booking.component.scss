@@ -1,0 +1,42 @@
+
+.cat-box{
+    width: 250px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+   border: 5cm;
+    margin-left: 10px;
+    font-size: 13px;
+}
+
+.booking{
+    width:1208px ;
+    height: 250px;
+
+}
+.bi-arrow-left{
+    color: blue;
+    font-size: 40px;
+}
+.booking-child{
+    display: flex;
+    
+}
+.booki-section{
+    display: flex;
+    justify-content: space-around;
+}
+#star{
+    width: 100px;
+    color: yellow;
+    border: none;
+}
+.desc{
+    font-size: 13px;
+}
+.picture{
+    width: 157px;
+    height: 157px;
+    border-radius: 50px;
+}

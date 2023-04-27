@@ -1,0 +1,123 @@
+
+a{text-decoration: none;}
+.container-header{
+    width: 100%;
+    height: 70px;
+    background-color: white;
+    display: flex;
+    text-align: center;
+}
+.logo-box{
+    width: 90px;
+    height: 66px;
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+}
+
+.logo-span{
+    width: 15px;
+    margin-right: 20px;
+    font-size: 15px;
+    color:#FF2C52;
+}
+
+#navbarNav{
+    margin-left: 80px;
+    
+   width: 867px;
+   height: 22px;
+   display: flex; 
+   
+   color: #053354;
+}
+.nav-item{
+    margin-top: 5px;
+
+}
+
+.auth-btn{
+    width: 232px;
+    height: 19px;
+    border: none;
+    margin-top: 5px;
+    margin-left: 60px;
+    cursor: pointer;
+}
+.auth{
+   color: #18A4E1;
+    
+}
+
+
+#nav-ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    text-decoration-line: none;
+}
+.nav-item{
+    margin-right: 20px;
+    text-decoration-line: none;
+    
+}
+
+.search-block{
+    width: 100%;
+    height: 120px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.box{
+   
+    width: 200px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    height: 22px;
+    margin-right: 15px;
+    
+    
+}
+.mini-box{
+    width: 20px;
+    height: 20px;
+}
+.mini-text{
+    width: 122px;
+    height: 22px;
+}
+.search-inp{
+    height: 50px;
+}
+.s-inp{
+    width: 450px;
+    height: 50px;
+    margin-left:30px ;
+    
+    border-radius: 25px;
+}
+.ser-icon{
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    background-color: #053354;
+    margin-left: 15px;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+    
+}
+.ico{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    vertical-align: bottom;
+    
+}
+

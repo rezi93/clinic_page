@@ -1,0 +1,71 @@
+:host {
+    display: block;
+  }
+  
+  .log {
+    position: fixed;
+    top: 25.4%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    height: 450px;
+    background-color: white;
+    z-index: 10;
+  }
+  .log-box{
+    display: flex;
+    flex-direction: column;
+  }
+  .auth-input{
+   
+    display: flex;
+    flex-direction: column;
+  }
+  .auth-a{
+    margin-left: 240px;
+    color: #053354;
+    font-size: 14px;
+}
+.auth-title{
+    
+    font-size: 26px;
+    color: #18A4E1;
+    
+    margin-bottom: 40px;
+}
+  
+  
+  
+  .auth-inp {
+   width: 377px;
+   height: 48px;
+   margin-bottom: 13px;
+    border: 1px solid black;
+    border-radius: 25px;
+  }
+  
+  .auth-btn {
+    width: 180px;
+    height: 40px;
+    margin-top: 20px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: #053354;
+    color: white;
+    cursor: pointer;
+  }
+ 
+  .close-btn{
+    width: 28px;
+    height: 30px;
+    font-size: 20px;
+    margin-left: 90%;
+    color: black;
+   cursor: pointer;
+   border: none;
+  }
+  
