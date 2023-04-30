@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Iuser } from '../interface/iface';
 import { ServService } from '../service/serv.service';
 import { v4 as uuidv4 } from 'uuid';
+import { ConfirmEmailComponent } from '../confirm-email/confirm-email.component';
+import { AuthService } from '../service/auth.service';
 
 
 @Component({
@@ -14,6 +16,7 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+ 
   
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,7 +24,7 @@ export class RegisterComponent implements OnInit {
     })
   };
    Id = uuidv4();
-  constructor(private _router: Router, private http: HttpClient, private serv: ServService,private _fb:FormBuilder) {
+  constructor(private _router: Router, private http: HttpClient, private serv: ServService,private _fb:FormBuilder,private auth:AuthService) {
     this.registerForm = this._fb.group({
       
       id:this._fb.control(this.Id),
@@ -46,15 +49,21 @@ export class RegisterComponent implements OnInit {
             .subscribe((data) => {
                 this.user = data;
                 console.log('User added successfully', this.user);
+                
                 this._router.navigate(['/Confirmemail'])
             }, (error) => {
                 console.log('Error adding user', error);
             });
+            
     }
+    
+     
 }
+
 
   
   
   
-  
 }
+
+

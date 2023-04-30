@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,30 +12,35 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ConfirmEmailComponent implements OnInit {
 
   emailConfirmed: boolean = false;
-  urlParams: any = {};
-  constructor(private auth:AuthService, private route:ActivatedRoute){}
+  urlParams: string = '';
+  constructor(private auth:AuthService, private route:ActivatedRoute,private _fb:FormBuilder){
+    this.myEmail=this._fb.group({
+      email:this._fb.control('', [Validators.required, Validators.email])
+    })
+  }
 
+  myEmail!:FormGroup
+  
 ngOnInit(): void{}
 
 
-  confirmEmail() {
-    this.auth.startLoading();
-    this.auth.confirmEmail(this.urlParams).subscribe(
+confirmEmail() {
+  const urlParams = this.myEmail.value.email;
+
+  if (urlParams) {
+    this.auth.confirmEmail(urlParams).subscribe(
       () => {
-        this.auth.setSuccess();
-        console.log('success');
-       
-        this.auth.completeLoading();
+        console.log('ok');
         this.emailConfirmed = true;
       },
       (error) => {
-        this.auth.setFailure();
         console.log(error);
-        
-        this.auth.completeLoading();
         this.emailConfirmed = false;
       }
     );
   }
+}
+
+    
 
 }

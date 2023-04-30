@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Iface,Ilogin,Iuser } from '../interface/iface';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { Observable, map, tap, concatMap, Subject,BehaviorSubject } from 'rxjs';
+import { Observable, map, tap, concatMap, Subject,BehaviorSubject, of } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgProgressRef } from 'ngx-progressbar';
 import{JwtHelperService} from'@auth0/angular-jwt'
@@ -67,26 +67,29 @@ export class AuthService {
 
   // email confirm
 
-  confirmEmail(model: any) {
-    return this._http.post( 'https://localhost:44346/api/User/email', model);
+ 
+  confirmEmail(urlParams: string): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = JSON.stringify(urlParams);
+    return this._http.post<any>('https://localhost:44346/api/User/emailconfirm', body, { headers: headers });
   }
+  
+  // startLoading() {
+  //   this.currentColor = this.defaultColor;
+  //   this.progressRef.start();
+  // }
 
-  startLoading() {
-    this.currentColor = this.defaultColor;
-    this.progressRef.start();
-  }
+  // completeLoading() {
+  //   this.progressRef.complete();
+  // }
 
-  completeLoading() {
-    this.progressRef.complete();
-  }
+  // setSuccess() {
+  //   this.currentColor = this.successColor;
+  // }
 
-  setSuccess() {
-    this.currentColor = this.successColor;
-  }
-
-  setFailure() {
-    this.currentColor = this.failureColor;
-  }
+  // setFailure() {
+  //   this.currentColor = this.failureColor;
+  // }
   
   
   
