@@ -18,7 +18,7 @@
 <app-category></app-category>
 
 <div class="wraper-box">
-    <p-card header="" [style]="{'width': '390px', 'height':'390px', 'margin-bottom': '2em', 'margin-top':'2rem'}" *ngFor="let item of doct.slice(0, counter)">
+    <p-card id="p-card" header="" class="responsive-card" *ngFor="let item of doct.slice(0, counter)">
       <ng-template pTemplate="header">
         <img src="{{item.thumbnail}}" class="picture">
       </ng-template>

@@ -1,12 +1,6 @@
 
 a{text-decoration: none;}
-.container-header{
-    width: 100%;
-    height: 70px;
-    background-color: white;
-    display: flex;
-    text-align: center;
-}
+
 .logo-box{
     width: 90px;
     height: 66px;
@@ -15,33 +9,13 @@ a{text-decoration: none;}
     cursor: pointer;
 }
 
-.logo-span{
-    width: 15px;
-    margin-right: 20px;
-    font-size: 15px;
-    color:#FF2C52;
-}
-
-#navbarNav{
-    margin-left: 80px;
-    
-   width: 867px;
-   height: 22px;
-   display: flex; 
-   
-   color: #053354;
-}
-.nav-item{
-    margin-top: 5px;
-
-}
 
 .auth-btn{
     width: 232px;
     height: 19px;
     border: none;
-    margin-top: 5px;
-    margin-left: 60px;
+    
+   
     cursor: pointer;
 }
 .auth{
@@ -50,20 +24,10 @@ a{text-decoration: none;}
 }
 
 
-#nav-ul{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
-    text-decoration-line: none;
-}
-.nav-item{
-    margin-right: 20px;
-    text-decoration-line: none;
-    
-}
+
 
 .search-block{
+    max-width: 100%;
     width: 100%;
     height: 120px;
     display: flex;
@@ -101,17 +65,21 @@ a{text-decoration: none;}
     
     border-radius: 25px;
 }
-.ser-icon{
-    width: 35px;
-    height: 35px;
-    border-radius: 50px;
-    background-color: #053354;
-    margin-left: 15px;
-    display: flex;
-  justify-content: center;
-  align-items: center;
+.logout{
+  width: 118px;
+  height: 32px;
+  color: #1c326f;
+  font-size: 18px;
   cursor: pointer;
-    
+  display: flex;
+  justify-content: space-around;
+  background-color: #fdefef;
+  border-radius: 20px;
+  
+ }
+ .bi {
+  font-size: 25px;
+  
 }
 .ico{
     width: 24px;
@@ -121,3 +89,193 @@ a{text-decoration: none;}
     
 }
 
+.header{
+    max-width: 100%;
+    width: 100%;
+    height: 22px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+#myLinks{
+    max-width: 100%;
+    width: 800px;
+    height: 22px;
+    display: flex;
+justify-content: space-between;
+}
+
+
+
+
+.topnav {
+    overflow: hidden;
+    
+    position: relative;
+    max-width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+   
+  }
+  .burger{
+    display: none;
+  }
+  
+ 
+  
+
+// responsive
+@media(max-width: 768px){
+   
+    .topnav{
+      position: relative;
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        margin-bottom: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+  
+.search-block {
+  display: none;
+}
+
+  
+   .auth-btn{
+    width: 132px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    
+   }
+   .slash{display: none;}
+   .auth{
+    
+    margin-bottom: 10px;
+     
+ }
+   #myLinks{
+   
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+   }
+
+   
+
+   .header{
+    display: none;
+   
+  }
+  .header.active{
+    
+    left: 0;
+    top: 5%;
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+   .topnav a {
+    color: rgb(14, 13, 13);
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+  }
+  .search-block.active{
+    position: absolute;
+    left: 0;
+    top: 86%;
+    max-width: 300px;
+    width: 300px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+   
+}
+
+  .search-inp{
+    max-width: 250px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+  }
+  .s-input{
+    max-width: 230px;
+    width: 230px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .box{
+    display: none;
+  }
+  
+ 
+  .burger.active {
+    position: absolute;
+    left: 0;
+    top: 0;
+   
+    width: 40px;
+    height: 40px;
+    
+    background: black;
+    display: block;
+    
+    
+    z-index: 100;
+   
+    
+  }
+  .bi {
+    font-size: 40px;
+    color: rgb(11, 7, 14);
+  }
+  
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  
+  .active {
+    
+    color: rgb(0, 0, 0);
+  }
+
+}
+
+@media(max-width: 480px){
+
+  .search-inp{
+    left: 0;
+    top: 0;
+    width: 80px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    
+  }
+  .s-input{
+    width: 80px;
+    height: 20px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+}
+     

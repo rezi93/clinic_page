@@ -1,4 +1,5 @@
 .foot-cont{
+    max-width: 100%;
     width: 100%;
     height: 300px;
     background-color: #053354;
@@ -35,4 +36,40 @@
 .foot-p{
     font-size: 16px;
     margin-top: 5px;
+}
+
+// responsive
+
+@media(max-width: 768px){
+    .foot-cont{
+   max-width: 100%;
+   width: 100%;
+   height: auto;
+   display: grid;
+   grid-template-columns: auto auto;
+   
+    }
+
+    .foot-box{
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+}
+
+@media(max-width: 480px){
+    .foot-cont{
+   max-width: 100%;
+   width: 100%;
+   height: auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   
+   
+    }
+
+    .foot-box{
+        margin-top: 45px;
+        margin-bottom: 45px;
+    }
 }

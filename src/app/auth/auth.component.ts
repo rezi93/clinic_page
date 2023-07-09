@@ -3,11 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../service/auth.service';
 import { Ilogin } from '../interface/iface';
-import{JwtHelperService} from'@auth0/angular-jwt'
-import { HttpHeaders } from '@angular/common/http';
-
-import { MatDialog } from '@angular/material/dialog';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, map, tap, concatMap, Subject, BehaviorSubject, of } from 'rxjs';
+import { MatDialog,MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-auth',
@@ -15,47 +14,81 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  loginform: FormGroup;
+  getUserProfileData(email: string, password: string) {
+    throw new Error('Method not implemented.');
+  }
+  loginform!: FormGroup;
   loguser: Ilogin[] = [];
-  isuservalid:boolean=false
-  Email: any;
-  Password: any;
-  authService: any;
-  private _http: any;
+  isuservalid: boolean = false;
 
-  constructor(private _router: Router, private serv: AuthService, private _fb: FormBuilder,private dialog:MatDialog) {
+  constructor(
+    private _router: Router,
+    private serv: AuthService,
+    private _fb: FormBuilder,
+    private dialog: MatDialog,
+    private http: HttpClient,
+    private dialogRef: MatDialogRef<AuthComponent>
+  ) {}
+
+  ngOnInit(): void {
     this.loginform = this._fb.group({
       Email: ['', [Validators.required, Validators.email]],
       Password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
-  ngOnInit(): void {}
-
-  close():void{
-    const dialogRef=this.dialog.closeAll()
+  close(): void {
+    const dialogRef = this.dialog.closeAll();
   }
+
   
   onSubmit() {
-    const credentials = { Email: this.Email, Password: this.Password };
-    this.serv.login(credentials).subscribe(
-      (response:any) => {
-        const token = response.access_token;
-        this.serv.setToken(token);
-        this.serv. getProtectedData().subscribe(
-          (response:any) => {
-            console.log(response);
-          },
-          (error: any) => {
-            console.log(error);
+    if (this.loginform.valid) {
+      console.log(this.loginform.value);
+      this.serv.login(this.loginform.value).subscribe({
+        next: (res) => {
+          alert(res.message);
+          const { Email, Password } = this.loginform.value;
+          if (res) {
+            this.serv.getUserProfileData(this.loginform.value).subscribe({
+              next: (userData) => {
+                console.log(userData);
+                localStorage.setItem('userData', JSON.stringify(userData));
+                if (userData.category === 'user') {
+                  this._router.navigate(['userboard'], { state: { userData } });
+                  this.dialogRef.close();
+                } else if (userData.category === 'admin') {
+                  this._router.navigate(['adminboard']);
+                  this.dialogRef.close();
+                } 
+              }
+            }); 
           }
-        );
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+        }
+      });
+  
+      this.serv.doclogin(this.loginform.value).subscribe({
+        next: (docData) => {
+          console.log(docData);
+          const { Email, Password } = this.loginform.value;
+          if (docData) {
+            this.serv.getdocdata(Email,Password).subscribe({
+              next: (doctorData) => {
+                console.log(doctorData);
+                localStorage.setItem('doctorData', JSON.stringify(doctorData));
+                this._router.navigate(['docboard']);
+                this.dialogRef.close();
+              }
+            });
+          }
+        }
+      });
+    } else {
+      console.log('Form is not valid');
+    }
   }
- 
+  
+forgotpaswordpage(){
+  this._router.navigate(['forgotpassword'])
 }
-
+}

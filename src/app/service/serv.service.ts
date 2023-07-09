@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Iface,Iuser } from '../interface/iface';
+import { Iface,Iuser,Ievent,IUser } from '../interface/iface';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable, map, tap, concatMap, Subject,BehaviorSubject } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -26,6 +26,22 @@ export class ServService {
     )
   }
 
+
+  getUserList(): Observable<IUser[]> {
+    return this._http.get<IUser[]>('https://localhost:44346/api/userList').pipe(
+      tap(result => result),
+      map(data => data)
+    );
+  }
+
+  deleteUser(userId: number): Observable<void> {
+    const url = `https://localhost:44346/api/users/${userId}`;
+    return this._http.delete<void>(url);
+  }
+  
+
+
+
   searchuser(first_name: string, category: string): Observable<Iface[]> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const params = { first_name, category };
@@ -37,6 +53,9 @@ export class ServService {
 
     return this._http.get<Iface[]>('https://localhost:44346/doctor/' + id + '/ ')
   }
+
+  
+  
 
   
 }

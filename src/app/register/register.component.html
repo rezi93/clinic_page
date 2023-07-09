@@ -1,63 +1,4 @@
-<!-- <div class="reg-box">
-    <span>
-        <h4>რეგისტრაცია</h4>
-    </span>
-    <div class="reg-input">
-        <form [formGroup]="registerForm" class="form" (ngSubmit)="onSubmit()">
-            <div class="valid">
-                <label>სახელი</label>
-                <input type="text" formControlName="firstName" class="inp-style" placeholder="მინიმუმ 5 სიმბოლო"  />
-                <div class="invalid-feedback" *ngIf="!registerForm.controls['firstName']?.valid && registerForm.controls['firstName']?.touched">
-                    <span class="error-reg">enter your name</span>
-                </div>
-            </div>
-            <div class="valid">
-                <label>გვარი</label>
-                <input type="text" formControlName="lastName" class="inp-style" placeholder="" />
-                <div class="invalid-feedback" *ngIf="!registerForm.controls['lastName']?.valid && registerForm.controls['lastName']?.touched">
-                    <div>Last Name is required</div>
-                </div>
-            </div>
-            <div class="valid">
-                <label>Email</label>
-                <input type="text" formControlName="email" class="inp-style" placeholder="" />
-                <div class="invalid-feedback" *ngIf="!registerForm.controls['email']?.valid && registerForm.controls['email']?.touched">
-                    <div>Email is required</div>
-                    <div>Email must be a valid email address</div>
-                </div>
-            </div>
-            <div class="valid">
-                <label>პაროლი</label>
-                <input type="password" formControlName="password" class="inp-style" placeholder="მინიმუმ 8 სიმბოლო" />
-                <div class="invalid-feedback" *ngIf="!registerForm.controls['password']?.valid && registerForm.controls['password']?.touched">
-                    <div>Password is required</div>
-                    <div>Password must be at least 8 characters</div>
-                </div>
-            </div>
-            <div class="valid">
-                <label>პირადი ნომერი</label>
-                <input type="" formControlName="idnumber" class="inp-style" placeholder="" />
-                <div class="invalid-feedback" *ngIf="!registerForm.controls['idnumber']?.valid && registerForm.controls['idnumber']?.touched">
-                    <div>idnumber is required</div>
-                </div>
-            </div>
-            
-            
-            <div class="valid">
-                <label>კატეგორია</label>
-                <input type="" formControlName="category"  class="inp-style" placeholder="" />
-                <div class="invalid-feedback" *ngIf="!registerForm.controls['category']?.valid && registerForm.controls['category']?.touched">
-                    <div >category is required</div>
-                    
-                </div>
-            </div>
-            
-            <button type="submit"   class="reg-btn" >რეგისტრაცია</button>
-        </form>
-        
 
-    </div>
-</div> -->
 
 
 
@@ -108,14 +49,18 @@
             
             <div class="valid">
                 <label>კატეგორია</label>
-                <input type="" formControlName="category"  class="inp-style" placeholder="" />
+                <select formControlName="category" class="inp-style">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
                 <div class="form-text text-danger" *ngIf="!registerForm.controls['category']?.valid && registerForm.controls['category']?.touched">
-                    <div >category is required</div>
-                    
+                    <div>category is required</div>
                 </div>
             </div>
             
+            <div class="reg-click">
             <button type="submit"   class="reg-btn" >რეგისტრაცია</button>
+            </div>
         </form>
         
 

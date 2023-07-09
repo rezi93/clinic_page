@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Iface,Ilogin,Iuser } from '../interface/iface';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { Iface,Ilogin,Iuser,Igetuser,Iemailmodel } from '../interface/iface';
+import { HttpClient,HttpHeaders,HttpParams } from '@angular/common/http';
 import { Observable, map, tap, concatMap, Subject,BehaviorSubject, of } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgProgressRef } from 'ngx-progressbar';
 import{JwtHelperService} from'@auth0/angular-jwt'
+import { Header } from 'primeng/api';
+import { T } from '@fullcalendar/core/internal-common';
+
 
 
 
@@ -12,6 +15,9 @@ import{JwtHelperService} from'@auth0/angular-jwt'
   providedIn: 'root'
 })
 export class AuthService {
+ 
+  
+  
    jwtHelper = new JwtHelperService();
    currentUser: Ilogin = { 
     Email: '',
@@ -24,29 +30,42 @@ export class AuthService {
   successColor: string = '#13b955';
   failureColor: string = '#fc3939';
   currentColor: string = this.defaultColor;
- 
+ header:any
 
   constructor(private _http: HttpClient, private _route: ActivatedRoute,) { }
 
-  
+ 
 
-  login(credentials: any): Observable<any> {
-    return this._http.post('https://localhost:44346/api/User/login/', credentials).pipe(
-      map((response:any)=>{
-        const decodetoken=this.jwtHelper.decodeToken(response.token);
-        this.currentUser.Email=decodetoken.email;
-        this.currentUser.Password=decodetoken.Password;
-        return this.currentUser
-      })
-    )
-  }
 
-  getProtectedData() {
-    const token = localStorage.getItem('access_token');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this._http.get('https://localhost:44346/api/User/token', { headers });
-  }
-  
+
+
+login(loginobj: any): Observable<any> {
+ 
+  return this._http.post<any>('https://localhost:44346/api/User/login/', loginobj);
+}
+
+private apiUrl = 'https://localhost:44346/api/user';
+
+doclogin(loginobj: any): Observable<Ilogin> {
+ 
+  return this._http.post<Ilogin>('https://localhost:44346/api/doc/login', loginobj);
+}
+
+getdocdata(email:string,password:string):Observable<Iface>{
+  const params={email,password};
+  return this._http.get<Iface>('https://localhost:44346/api/doct',{params});
+}
+
+
+
+
+
+
+getUserProfileData(loginobj: any): Observable<any> {
+  return this._http.get<any>(`${this.apiUrl}`, { params: loginobj });
+}
+
+
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('access_token');
@@ -68,28 +87,22 @@ export class AuthService {
   // email confirm
 
  
-  confirmEmail(urlParams: string): Observable<any> {
+  confirmEmail(emailModel: Iemailmodel): Observable<any> {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const body = JSON.stringify(urlParams);
+    const body = JSON.stringify(emailModel);
     return this._http.post<any>('https://localhost:44346/api/User/emailconfirm', body, { headers: headers });
   }
+
   
-  // startLoading() {
-  //   this.currentColor = this.defaultColor;
-  //   this.progressRef.start();
-  // }
 
-  // completeLoading() {
-  //   this.progressRef.complete();
-  // }
-
-  // setSuccess() {
-  //   this.currentColor = this.successColor;
-  // }
-
-  // setFailure() {
-  //   this.currentColor = this.failureColor;
-  // }
+  forgotpass(emailModel: Iemailmodel): Observable<any> {
+    
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = JSON.stringify(emailModel);
+    return this._http.post<any>('https://localhost:44346/api/User/forgotpassword', body, { headers: headers });
+  
+}
+  
   
   
   

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
+import { Iemailmodel } from '../interface/iface';
 
 
 @Component({
@@ -12,8 +13,12 @@ import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 export class ConfirmEmailComponent implements OnInit {
 
   emailConfirmed: boolean = false;
-  urlParams: string = '';
-  constructor(private auth:AuthService, private route:ActivatedRoute,private _fb:FormBuilder){
+  emailModel: Iemailmodel = {
+    To: 'reziq337@gmail.com',
+    Subject: 'Email confirm',
+    Content: 'Your email confirmed '
+  };
+  constructor(private auth:AuthService, private route:ActivatedRoute,private _fb:FormBuilder,private _router:Router){
     this.myEmail=this._fb.group({
       email:this._fb.control('', [Validators.required, Validators.email])
     })
@@ -25,13 +30,18 @@ ngOnInit(): void{}
 
 
 confirmEmail() {
-  const urlParams = this.myEmail.value.email;
+  
 
-  if (urlParams) {
-    this.auth.confirmEmail(urlParams).subscribe(
+  if (this.emailModel) {
+    this.auth.confirmEmail(this.emailModel).subscribe(
       () => {
-        console.log('ok');
+        
+       
+        alert('email confirmed!');
         this.emailConfirmed = true;
+        this._router.navigate(['']);
+        
+        
       },
       (error) => {
         console.log(error);

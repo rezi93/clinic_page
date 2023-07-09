@@ -7,6 +7,13 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth.guard';
 import { CategoryComponent } from './category/category.component';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
+import { UserdashboardComponent } from './userdashboard/userdashboard.component';
+import { AdmindashboardComponent } from './admindashboard/admindashboard.component';
+import { DocboardComponent } from './docboard/docboard.component';
+import { DocCategoryComponent } from './doc-category/doc-category.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [
   {
@@ -32,6 +39,34 @@ const routes: Routes = [
 {
   path:"Confirmemail",
   component:ConfirmEmailComponent
+},
+{
+  path:"userboard",
+  component:UserdashboardComponent
+},
+{
+  path:"adminboard",
+  component:AdmindashboardComponent
+},
+{
+  path:"docboard",
+  component:DocboardComponent
+},
+{
+  path:"doccategory",
+  component:DocCategoryComponent
+},
+{
+  path:"forgotpassword",
+  component:ForgotpasswordComponent
+},
+{
+  path:"userlist",
+  component:UserListComponent
+},
+{
+  path:"contact",
+  component:ContactComponent
 }
 
 

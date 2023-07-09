@@ -23,45 +23,65 @@ export class RegisterComponent implements OnInit {
       'Content-Type':  'application/json'
     })
   };
-   Id = uuidv4();
+  //  Id = uuidv4();
   constructor(private _router: Router, private http: HttpClient, private serv: ServService,private _fb:FormBuilder,private auth:AuthService) {
     this.registerForm = this._fb.group({
       
-      id:this._fb.control(this.Id),
+      
       firstName: this._fb.control('', [Validators.required, Validators.minLength(5)]),
       lastName: this._fb.control('', Validators.required),
       email:this._fb.control('', [Validators.required, Validators.email]),
       password: this._fb.control('', [Validators.required, Validators.minLength(8)]),
       idnumber: this._fb.control('', Validators.required),
-      category: this._fb.control('', Validators.required)
+      category: this._fb.control('', Validators.required),
+      role: this._fb.control('')
     });
 
   }
 
   ngOnInit(): void {}
   user:Iuser[]=[];
-  onSubmit() {
-    if (this.registerForm.valid) {
-        const url = 'https://localhost:44346/api/User/postuser';
-        const body = JSON.stringify(this.registerForm.value);
-        const options = this.httpOptions;
-        this.http.post<Iuser[]>(url, body, options)
-            .subscribe((data) => {
-                this.user = data;
-                console.log('User added successfully', this.user);
+//   onSubmit() {
+//     if (this.registerForm.valid) {
+//         const url = 'https://localhost:44346/api/User/postuser';
+//         const body = JSON.stringify(this.registerForm.value);
+       
+//         const options = this.httpOptions;
+//         this.http.post<Iuser[]>(url, body, options)
+//             .subscribe((data) => {
+//                 this.user = data;
+//                 console.log('User added successfully', this.user);
                 
-                this._router.navigate(['/Confirmemail'])
-            }, (error) => {
-                console.log('Error adding user', error);
-            });
+//                 this._router.navigate(['/Confirmemail'])
+//             }, (error) => {
+//                 console.log('Error adding user', error);
+//             });
             
-    }
+//     }
     
      
+// }
+
+
+onSubmit() {
+  if (this.registerForm.valid) {
+    const url = 'https://localhost:44346/api/User/postuser';
+    const body = {
+      ...this.registerForm.value,
+      role: 'user'
+    };
+    const options = this.httpOptions;
+    this.http.post<Iuser[]>(url, body, options)
+      .subscribe((data) => {
+        this.user = data;
+        console.log('User added successfully', this.user);
+        this._router.navigate(['/Confirmemail']);
+      }, (error) => {
+        console.log('Error adding user', error);
+      });
+  }
 }
 
-
-  
   
   
 }
