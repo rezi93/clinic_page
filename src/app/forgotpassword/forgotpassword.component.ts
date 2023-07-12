@@ -40,9 +40,9 @@ forgotpassword() {
    
     this.auth.forgotpass(this.emailModel).subscribe(
       () => {
-        alert('New password sent!');
+        
         this.forgotPassword = true;
-        this._router.navigate(['']);
+        
         
         
       },
@@ -52,6 +52,8 @@ forgotpassword() {
       }
     );
   }
+  alert('New password sent!');
+  this._router.navigate(['/']);
 }
 
 

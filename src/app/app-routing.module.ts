@@ -4,7 +4,7 @@ import { MainComponent } from './main/main.component';
 import { BookingComponent } from './booking/booking.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthComponent } from './auth/auth.component';
-import { AuthGuard } from './auth.guard';
+
 import { CategoryComponent } from './category/category.component';
 import { ConfirmEmailComponent } from './confirm-email/confirm-email.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
@@ -30,7 +30,7 @@ const routes: Routes = [
     component:RegisterComponent
   },
   {path:'login',
-  component:AuthComponent,canActivate:[AuthGuard]
+  component:AuthComponent
 },
 {
   path:"category",

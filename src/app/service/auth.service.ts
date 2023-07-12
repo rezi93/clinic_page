@@ -67,22 +67,8 @@ getUserProfileData(loginobj: any): Observable<any> {
 
 
 
-  isAuthenticated(): boolean {
-    const token = localStorage.getItem('access_token');
-    return !this.jwtHelper.isTokenExpired(token);
-  }
-
-  logout(): void {
-    localStorage.removeItem('access_token');
-  }
-
-  getToken(): any {
-    return localStorage.getItem('access_token');
-  }
-
-  setToken(token:string){
-    localStorage.setItem('access_token',token);
-  }
+  
+ 
 
   // email confirm
 
